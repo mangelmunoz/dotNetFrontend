@@ -55,7 +55,7 @@ function OwnerData(props){
                     
                     <div className="buttonsDiv">
                         <button className='btn btn-success seeVehicles' type="button" onClick={handleDeleteOwner}>See vehicles</button>
-                        <button className='btn btn-success updateButton' type="button" onClick={handleUpdateOwner}></button>
+                        
                     </div>
                     
                 </div>
