@@ -28,7 +28,7 @@ function AddOwnerForm(props) {
       redirect: "follow",
     };
 
-    fetch("http://localhost:8080/api/Owner/add", requestOptionsPost)
+    fetch("https://localhost:7052/api/Owner", requestOptionsPost)
       .then((response) => response.json())
       .then((result) => console.log(result), navigate("../home"))
       .catch((error) => console.log("error", error));
@@ -38,8 +38,7 @@ function AddOwnerForm(props) {
     setOwnerData({
       firstName: event.target.value,
       lastName: OwnerData.lastName,
-      email: OwnerData.email,
-      phoneNumber: OwnerData.phoneNumber,
+      driverLicense: OwnerData.driverLicense,
     });
   };
 
@@ -47,26 +46,15 @@ function AddOwnerForm(props) {
     setOwnerData({
       firstName: OwnerData.firstName,
       lastName: event.target.value,
-      email: OwnerData.email,
-      phoneNumber: OwnerData.phoneNumber,
+      driverLicense: OwnerData.driverLicense,
     });
   };
 
-  const handleEmail = (event) => {
+  const handleDriverLicense = (event) => {
     setOwnerData({
       firstName: OwnerData.firstName,
       lastName: OwnerData.lastName,
-      email: event.target.value,
-      phoneNumber: OwnerData.phoneNumber,
-    });
-  };
-
-  const handlePhoneNumber = (event) => {
-    setOwnerData({
-      firstName: OwnerData.firstName,
-      lastName: OwnerData.lastName,
-      email: OwnerData.email,
-      phoneNumber: event.target.value,
+      driverLicense: event.target.value,
     });
   };
 
@@ -94,22 +82,13 @@ function AddOwnerForm(props) {
             onChange={handleLastName}
           />
           <label for="exampleInputEmail1" class="form-label">
-            Email address
+            Driving License
           </label>
           <input
             type="email"
             class="form-control"
             id="exampleInputEmail1"
-            onChange={handleEmail}
-          />
-          <label for="exampleInputPhone" class="form-label">
-            Phone number
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleInputPhone"
-            onChange={handlePhoneNumber}
+            onChange={handleDriverLicense}
           />
         </div>
         <button type="submit" class="btn btn-primary" onClick={createNewUser}>
