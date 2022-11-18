@@ -9,36 +9,11 @@ function OwnerData(props){
 
     const navigate = useNavigate();
     
-    const handleDeleteOwner = (event) => {
+    const handleSeeVehicles = (event) => {
 
-        event.preventDefault();
-
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        let requestOptionsPost = {
-        method: "DELETE",
-        headers: myHeaders,
-        redirect: "follow",
-        };
-
-        console.log(props.object.id)
-        fetch("http://localhost:8080/api/Owner/delete/" + props.object.id, requestOptionsPost)
-        .then((response) => response.json())
-        .then(() => navigate("../home"))
-        .catch((error) => console.log("error", error));
+        navigate("../vehicles/" + props.object.id)
 
     }
-
-
-    const handleUpdateOwner = (event) => {
-
-        event.preventDefault();
-
-        navigate('../update/' + props.object.id);
-            
-    }
-
     
     
     return (
@@ -54,7 +29,7 @@ function OwnerData(props){
                     </div>
                     
                     <div className="buttonsDiv">
-                        <button className='btn btn-success seeVehicles' type="button" onClick={handleDeleteOwner}>See vehicles</button>
+                        <button className='btn btn-success seeVehicles' type="button" onClick={handleSeeVehicles}>See vehicles</button>
                         
                     </div>
                     

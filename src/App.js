@@ -2,7 +2,7 @@ import {React, useState} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddVehiclePage from "./pages/addOwnerPage";
 import HomePage from "./pages/homePage";
-import UpdateStudentPage from "./pages/updateStudentPage";
+import VehiclesPage from "./pages/vehiclesPage";
 
 import './styles/App.css';
 
@@ -17,7 +17,7 @@ function App() {
 
           <Route path="/home" element={<HomePage />} />
           <Route path="/add" element={<AddVehiclePage/> } />
-          <Route path="/update/:id" element={<UpdateStudentPage/> } />
+          <Route path="/vehicles/:id" element={<VehiclesPage/> } />
         </Routes>
 
       </BrowserRouter>
