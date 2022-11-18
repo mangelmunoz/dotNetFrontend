@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import VehicleData from './VehicleData'
 
@@ -10,13 +10,14 @@ function VehicleList(props) {
     const [Vehicles, setVehicles] = useState([]);
 
     const navigate = useNavigate();
+    let {id} = useParams();
 
 
     const handleAddVehicle = (event) => {
 
         event.preventDefault();
 
-        navigate('/add');
+        navigate('../vehicles/add/' + id);
             
     }
 

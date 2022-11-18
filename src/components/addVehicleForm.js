@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AddVehicleForm(props) {
-  
+
   const [VehicleData, setVehicleData] = useState("");
 
   const navigate = useNavigate();
+
+  let {id} = useParams();
 
   const createNewVehicle = (event) => {
     event.preventDefault();
 
     setVehicleData({
-      firstName: VehicleData.firstName,
-      lastName: VehicleData.lastName,
-      email: VehicleData.email,
-      phoneNumber: VehicleData.phoneNumber,
+      brand: VehicleData.brand,
+      vin: VehicleData.vin,
+      color: VehicleData.color,
+      year: parseInt(VehicleData.year),
+      owner_id: parseInt(id),
     });
 
     var myHeaders = new Headers();
@@ -31,33 +34,57 @@ function AddVehicleForm(props) {
 
     fetch("https://localhost:7052/api/Vehicle", requestOptionsPost)
       .then((response) => response.json())
-      .then((result) => console.log(result), navigate("../home"))
+      .then((result) => console.log(result), navigate("../vehicles/" + id))
       .catch((error) => console.log("error", error));
   };
 
-  const handleFirstName = (event) => {
+  const handleBrand = (event) => {
     setVehicleData({
-      firstName: event.target.value,
-      lastName: VehicleData.lastName,
-      driverLicense: VehicleData.driverLicense,
+      brand: event.target.value,
+      vin: VehicleData.lastName,
+      color: VehicleData.color,
+      year: parseInt(VehicleData.year),
+      owner_id: parseInt(id),
     });
   };
 
-  const handleLastName = (event) => {
+  const handleVin = (event) => {
     setVehicleData({
-      firstName: VehicleData.firstName,
-      lastName: event.target.value,
-      driverLicense: VehicleData.driverLicense,
+
+      brand: VehicleData.brand,
+      vin: event.target.value,
+      color: VehicleData.color,
+      year: parseInt(VehicleData.year),
+      owner_id: parseInt(id),
+      
     });
   };
 
-  const handleDriverLicense = (event) => {
+  const handleColor = (event) => {
     setVehicleData({
-      firstName: VehicleData.firstName,
-      lastName: VehicleData.lastName,
-      driverLicense: event.target.value,
+
+      brand: VehicleData.brand,
+      vin: VehicleData.vin,
+      color: event.target.value,
+      year: parseInt(VehicleData.year),
+      owner_id: parseInt(id),
+
     });
   };
+
+  const handleYear = (event) => {
+    setVehicleData({
+
+      brand: VehicleData.brand,
+      vin: VehicleData.vin,
+      color: VehicleData.color,
+      year: parseInt(event.target.value),
+      owner_id: parseInt(id),
+
+    });
+  };
+
+  
 
   return (
     <div className="addVehicleDiv card">
@@ -65,31 +92,40 @@ function AddVehicleForm(props) {
         <form>
         <div class="mb-3">
           <label for="exampleInputName" class="form-label">
-            Name
+            Brand
           </label>
           <input
             type="text"
             class="form-control"
             id="exampleInputName"
-            onChange={handleFirstName}
+            onChange={handleBrand}
           />
           <label for="exampleInputName1" class="form-label">
-            Surname
+            Vin
           </label>
           <input
             type="text"
             class="form-control"
             id="exampleInputName1"
-            onChange={handleLastName}
+            onChange={handleVin}
           />
           <label for="exampleInputEmail1" class="form-label">
-            Driving License
+           Color
           </label>
           <input
             type="email"
             class="form-control"
             id="exampleInputEmail1"
-            onChange={handleDriverLicense}
+            onChange={handleColor}
+          />
+          <label for="exampleInputEmail1" class="form-label">
+           Year
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            onChange={handleYear}
           />
         </div>
         <button type="submit" class="btn btn-primary" onClick={createNewVehicle}>
